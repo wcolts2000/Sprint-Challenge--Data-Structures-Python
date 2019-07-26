@@ -29,7 +29,8 @@ second_group = set(names_2)  # O(1)
 print('firstgroup length: ', len(first_group),
       '\nsecondgroup length: ', len(second_group))
 for name in first_group:  # O(n) # Using 2 set and the built in set loop in the if shaves off even more time -> time to complete 0.005980491638186594 seconds with 64 duplicates
-    if name in second_group:  # O(1) ?
+    # O(1) ? as per https://wiki.python.org/moin/TimeComplexity this is also O(n)
+    if name in second_group:
         duplicates.append(name)  # O(1)
 
 # AS Lists
