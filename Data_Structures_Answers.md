@@ -19,6 +19,7 @@ Add your answers to the questions below.
 5. What is the runtime complexity of the provided code in `names.py`?
 
 - The provided solution was on the order of O(n^2) as it contained a nested for loop in it. because the 2 lists start at the same length we can keep it at just looking at n and not add in a second m factor I think
+- UPDATE as per https://wiki.python.org/moin/TimeComplexity, the runtime of `x in s` is also O(n), so the provided solution is O(n^3)?
 
 6. What is the space complexity of the provided code in `names.py`?
 
@@ -27,6 +28,7 @@ Add your answers to the questions below.
 7. What is the runtime complexity of your optimized code in `names.py`?
 
 - optimized solution is on the order of O(n) as i have a single loop going through the first list. All other comparisons are done in Constant time (not sure of the time complexity of built in if loop when seeing if the name is in there, but it is faster than any loop we code)
+- UPDATE as per https://wiki.python.org/moin/TimeComplexity, the runtime of `x in s` is also O(n), so the optimized solution is O(n^2)?
 
 8. What is the space complexity of your optimized code in `names.py`?
 
