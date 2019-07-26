@@ -11,12 +11,42 @@ names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# for name_1 in names_1:   # Starter Solution --> time to complete: 7.3630006313323975 seconds with 64 duplicates
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
+
+# make names_1 into a set to remove duplicates from on group
+first_group = set(names_1)
+# # print(first_group)
+# # print(names_2)
+# # for name in first_group:  # Using a set and the built in list loop in the if shaves off 6 seconds -> time to complete 1.2062842845916748 seconds with 64 duplicates
+# #     if name in names_2:
+# #         duplicates.append(name)
+
+# # lets try both as sets
+second_group = set(names_2)
+print('firstgroup length: ', len(first_group),
+      '\nsecondgroup length: ', len(second_group))
+for name in first_group:  # Using 2 set and the built in set loop in the if shaves off even more time -> time to complete 0.005980491638186594 seconds with 64 duplicates
+    if name in second_group:
+        duplicates.append(name)
+
+
+# AS Lists
+# first_group = list(names_1)
+# for name in first_group:  # Using a list and the built in list loop in the if shaves off 6 seconds -> time to complete 1.1823148727416992 seconds with 64 duplicates
+#     if name in names_2:
+#         duplicates.append(name)
+
+# lets try both as lists
+# second_group = list(names_2)
+# print('firstgroup length: ', len(first_group),
+#       '\nsecondgroup length: ', len(second_group))
+# for name in first_group:  # Using 2 lists and the built in lists loop in the if shaves off 6 seconds -> time to complete 1.2013013362884521 seconds with 64 duplicates
+#     if name in second_group:
+#         duplicates.append(name)
 
 end_time = time.time()
-print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
-
+print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print(f"runtime: {end_time - start_time} seconds")
