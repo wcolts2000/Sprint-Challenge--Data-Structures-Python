@@ -1,5 +1,5 @@
-from searching import binary_search, binary_search_recursive
 import time
+from binary_search_tree import BinarySearchTree
 
 start_time = time.time()
 
@@ -12,28 +12,25 @@ names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []
-# for name_1 in names_1:   # Starter Solution --> time to complete: 7.3630006313323975 seconds with 64 duplicates
-#     for name_2 in names_2:
-#         if name_1 == name_2:
-#             duplicates.append(name_1)
 
-# make names_1 into a set to remove duplicates from on group
-first_group = set(names_1)  # O(1)
-# first_group_list = sorted(names_1)
-# # # print(first_group)
-# # # print(names_2)
-# # # for name in first_group:  # Using a set and the built in list loop in the if shaves off 6 seconds -> time to complete 1.2062842845916748 seconds with 64 duplicates
-# # #     if name in names_2:
-# # #         duplicates.append(name)
+bst = BinarySearchTree(names_1[0])  # O(1)
+for num in range(1, len(names_1)):
+    if names_1[num] is not None:
+        bst.insert(names_1[num])
+# print(type(names_1[num]))
 
-# # # lets try both as sets
-second_group = set(names_2)  # O(1)
-print('firstgroup length: ', len(first_group),
-      '\nsecondgroup length: ', len(second_group))
-for name in first_group:  # O(n) # Using 2 set and the built in set loop in the if shaves off even more time -> time to complete 0.005980491638186594 seconds with 64 duplicates
-    # O(1) ? as per https://wiki.python.org/moin/TimeComplexity this is also O(n)
-    if name in second_group:
-        duplicates.append(name)  # O(1)
+print(bst.contains('Daphne Phillips'))
+for name in names_2:
+    if bst.contains(name):
+        duplicates.append(name)
+
+# first_group = set(names_1)  # O(1)
+# second_group = set(names_2)  # O(1)
+# print('firstgroup length: ', len(first_group),
+#       '\nsecondgroup length: ', len(second_group))
+# for name in first_group:  # O(n)
+#     if name in second_group: # O(1) in a set
+#         duplicates.append(name)  # O(1)
 
 # AS Lists
 # first_group = list(names_1)
@@ -49,8 +46,31 @@ for name in first_group:  # O(n) # Using 2 set and the built in set loop in the 
 #     if name in second_group:
 #         duplicates.append(name)
 
-# for name in names_2:
-#     if binary_search(first_group_list, name) >= 0:
+
+# def binary_search(arr, target): # Not correctly returning data, on;y produces 38 or 39 duplicates depending which list is sorted and searched
+
+#     if len(arr) == 0:
+#         return -1  # array empty
+
+#     low = 0
+#     high = len(arr)-1
+
+#     # TO-DO: add missing code
+#     while low < high:
+#         mid = int((low+high)/2)
+#         midpoint = arr[mid]
+#         if midpoint == target:
+#             return mid
+#         elif midpoint > target:
+#             high = mid - 1
+#         else:
+#             low = mid + 1
+
+# return -1  # not found
+
+
+# for name in names_1:
+#     if binary_search(first_group_list, name) is not -1:
 #         duplicates.append(name)
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
