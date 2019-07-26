@@ -20,25 +20,25 @@ class RingBuffer:
 
         #     self.storage.append(item)
         # print("Storage: ", self.storage, '\nCapacity: ', self.capacity)
-        if self.current == 0:
-            self.storage[0] = item
-            self.current += 1
+        if self.current == 0:   # O(1)
+            self.storage[0] = item  # O(1)
+            self.current += 1  # O(1)
             return
         else:
-            if self.current < self.capacity - 1:
-                self.storage[self.current] = item
-                self.current += 1
+            if self.current < self.capacity - 1:  # O(1)
+                self.storage[self.current] = item  # O(1)
+                self.current += 1  # O(1)
             else:
-                self.storage[self.current] = item
-                self.current = 0
+                self.storage[self.current] = item  # O(1)
+                self.current = 0  # O(1)
 
     def get(self):
-        current_values = []
-        for item in self.storage:
-            if item is not None:
-                current_values.append(item)
+        current_values = []  # O(1)
+        for item in self.storage:  # O(n)
+            if item is not None:  # O(1)
+                current_values.append(item)  # O(1)
         # print(current_values)
-        return current_values
+        return current_values  # O(1)
         # print("Storage: ", self.storage, '\nCapacity: ', self.capacity)
 
 

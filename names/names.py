@@ -17,21 +17,20 @@ duplicates = []
 #             duplicates.append(name_1)
 
 # make names_1 into a set to remove duplicates from on group
-first_group = set(names_1)
-# # print(first_group)
-# # print(names_2)
-# # for name in first_group:  # Using a set and the built in list loop in the if shaves off 6 seconds -> time to complete 1.2062842845916748 seconds with 64 duplicates
-# #     if name in names_2:
-# #         duplicates.append(name)
+first_group = set(names_1)  # O(1)
+# # # print(first_group)
+# # # print(names_2)
+# # # for name in first_group:  # Using a set and the built in list loop in the if shaves off 6 seconds -> time to complete 1.2062842845916748 seconds with 64 duplicates
+# # #     if name in names_2:
+# # #         duplicates.append(name)
 
-# # lets try both as sets
-second_group = set(names_2)
+# # # lets try both as sets
+second_group = set(names_2)  # O(1)
 print('firstgroup length: ', len(first_group),
       '\nsecondgroup length: ', len(second_group))
-for name in first_group:  # Using 2 set and the built in set loop in the if shaves off even more time -> time to complete 0.005980491638186594 seconds with 64 duplicates
-    if name in second_group:
-        duplicates.append(name)
-
+for name in first_group:  # O(n) # Using 2 set and the built in set loop in the if shaves off even more time -> time to complete 0.005980491638186594 seconds with 64 duplicates
+    if name in second_group:  # O(1) ?
+        duplicates.append(name)  # O(1)
 
 # AS Lists
 # first_group = list(names_1)
